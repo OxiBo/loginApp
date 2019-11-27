@@ -1,0 +1,19 @@
+body {
+  background: mistyrose;
+}
+
+a {
+  width: 50%;
+}
+h1,
+h2 {
+  text-align: center;
+}
+.my-buttons {
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: space-around;
+  align-items: center;
+}
+

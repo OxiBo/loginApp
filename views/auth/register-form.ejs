@@ -1,0 +1,29 @@
+<%- include ('../layouts/header') -%>
+<div class="ui main text container segment">
+        <h2>Register as a new User</h2>
+        <form action="/signup" method="POST" class="ui form fields">
+            <div class="field">
+              <label for="">Username</label>
+              <input
+                type="text"
+                name="username"
+                placeholder="Enter username"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="">Password</label>
+              <input type="password" name="password" placeholder="Enter password" />
+            </div>
+            <div class="field">
+              <input
+                type="submit"
+                class="ui button big green"
+                value="Register!"
+              />
+            </div>
+          </form>
+</div>
+
+
+<%- include ('../layouts/footer') -%>
