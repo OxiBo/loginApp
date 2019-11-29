@@ -63,7 +63,6 @@ app.use(flash()); // to have flash messages
 
 // middleware for making info about current user available on every route
 app.use((req, res, next) => {
-  console.log(req.user);
   res.locals.currentUser = req.user;
   res.locals.error = req.flash("error");
   res.locals.success = req.flash("success");
@@ -82,12 +81,17 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get('/home', (req, res) => {
+    res.render('home')
+});
+
+
 app.get("/secret", (req, res) => {
   if (req.isAuthenticated()) {
     res.render("secret");
   } else {
     req.flash("error", "You need a permission to visit this page");
-    res.redirect("/");
+    res.redirect("/home");
   }
 });
 
@@ -97,7 +101,7 @@ app.get("/logout", async (req, res) => {
   // https://developers.facebook.com/docs/facebook-login/reauthentication/
   if (req.user.facebook.id) {
     try {
-      const check = await axios.delete(
+       await axios.delete(
         `https://graph.facebook.com/${req.user.facebook.id}/permissions?access_token=${req.user.facebook.token}`
       );
     } catch (err) {

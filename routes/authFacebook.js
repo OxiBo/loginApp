@@ -21,7 +21,7 @@ router.get(
       authType: "reauthenticate",
       auth_nonce: Math.random().toString(36).substring(7), //  characters picked randomly
       scope: ["email"],
-      failureRedirect: "/"
+      failureRedirect: "/home"
     }),
     (req, res) => {
       // Successful authentication, redirect home.

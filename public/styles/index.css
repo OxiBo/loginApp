@@ -1,27 +1,68 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   background: mistyrose;
 }
-
-a {
-  width: 50%;
+.login-flex {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-items: center;
+  /* align-items: center; */
+}
+.login {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* height: 100vh; */
+  /* justify-items: center;
+  align-content: center; */
+  justify-content: center;
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-image: url(https://images.unsplash.com/photo-1502101872923-d48509bff386?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60);
+  /* https://images.unsplash.com/photo-1546198632-9ef6368bef12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60
+    */
+  /* position: relative; */
+  text-align: center;
+  /* padding-top: 30vh;
+  height: 100vh; */
 }
 h1,
 h2 {
+  
   text-align: center;
+}
+
+nav.p {
+  display: inline;
+}
+.main {
+  margin-top: 40px !important;
 }
 .my-buttons {
   display: flex;
   flex-direction: column;
-  height: 150px;
+  height: 200px;
   justify-content: space-around;
   align-items: center;
 }
+.my-buttons a {
+  width: 50%;
+}
 
-.secret{
+.action {
+  display: inline;
+}
+.secret {
   margin-top: 70px;
 }
 
 .flash-message {
-margin-top: 40px!important;
+  margin-top: 40px !important;
 }
-

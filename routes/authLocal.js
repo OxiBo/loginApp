@@ -49,7 +49,7 @@ router.post("/login", async (req, res, next) => {
   if (!foundUser) {
     // if no user is found, return the message
     req.flash("error", "No user found");
-    res.redirect("/");
+    res.redirect("/home");
   } else if (!foundUser.validPassword(req.body.password)) {
     req.flash("error", "Wrong password");
     res.redirect("/login");

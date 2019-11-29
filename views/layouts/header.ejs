@@ -14,6 +14,37 @@
   </head>
   <body>
     <div class="ui container">
+      <nav>
+        <div class="ui fixed inverted menu">
+          <div class="left menu">
+            <a href="/home" class="ui item">HOME</a>
+            <a href="/secret" class="ui item">Secret</a>
+          </div>
+          <div class="right menu">
+              <!-- <a class="ui item">
+                  Logged in as Oks
+              
+              </a> -->
+            <%if(currentUser){%>
+            <a class="ui item">
+                Logged in as 
+                
+                  <%= currentUser.local.username || currentUser.google.name ||
+                  currentUser.facebook.name %>
+            
+            </a>
+            <a class="ui item" href="/logout">
+              Log Out
+            </a>
+            <%} else {%>
+              <a class="ui item" href="/">
+               Start
+              </a>
+              <%}%>
+          </div>
+        </div>
+      </nav>
+
       <% if(error && error.length > 0) {%>
       <div class="ui main text container flash-message error message">
         <%= error%>
@@ -23,5 +54,4 @@
         <%= success%>
       </div>
       <%}%>
-    
  
