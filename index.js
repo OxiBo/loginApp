@@ -1,15 +1,18 @@
+// https://scotch.io/tutorials/easy-node-authentication-setup-and-local
+
 // https://dev.to/deammer/loading-environment-variables-in-js-apps-1p7p
 require("dotenv").config();
 
 const express = require("express"),
   bodyParser = require("body-parser"),
   passport = require("passport"),
-  LocalStrategy = require("passport-local"),
+  //   LocalStrategy = require("passport-local"),
   GoogleStrategy = require("passport-google-oauth20").Strategy,
   FacebookStrategy = require("passport-facebook"),
   mongoose = require("mongoose"),
   cookieSession = require("cookie-session"),
   flash = require("connect-flash"),
+  axios = require("axios"),
   app = express();
 
 require("./models/User");
@@ -57,7 +60,8 @@ app.use(flash()); // to have flash messages
 
 // middleware for making info about current user available on every route
 app.use((req, res, next) => {
-  // res.locals.currentUser = req.user;
+  console.log(req.user);
+  res.locals.currentUser = req.user;
   res.locals.error = req.flash("error");
   res.locals.success = req.flash("success");
   next();
@@ -82,6 +86,26 @@ app.get("/secret", (req, res) => {
     req.flash("error", "You need a permission to visit this page");
     res.redirect("/");
   }
+});
+
+// logout route
+app.get("/logout", async (req, res) => {
+  // console.log('test')
+  // console.log("test" + req.user);
+
+  //   console.log(req.session.facebook.id)
+  if (req.user.facebook.id) {
+    try {
+      const check = await axios.delete(
+        `https://graph.facebook.com/${req.user.facebook.id}/permissions?access_token=${req.user.facebook.token}`
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  req.logout();
+  req.flash("success", "You are logged out");
+  res.redirect("/");
 });
 
 const PORT = process.env.PORT || 8000;

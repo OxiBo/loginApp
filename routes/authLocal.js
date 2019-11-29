@@ -63,12 +63,6 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
-// logout route
-router.get("/logout", (req, res) => {
-  // console.log(req.session)
-  req.logout();
-  req.flash("success", "You are logged out");
-  res.redirect("/");
-});
+
 
 module.exports = router;

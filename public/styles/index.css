@@ -17,3 +17,11 @@ h2 {
   align-items: center;
 }
 
+.secret{
+  margin-top: 70px;
+}
+
+.flash-message {
+margin-top: 40px!important;
+}
+

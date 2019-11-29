@@ -6,7 +6,10 @@ delete mongoose.connection.models["users"];
 const userSchema = new Schema({
   local: {
     username: String,
-    password: String
+    email: String,
+    password: String,
+    occupation: String,
+    age: Number
   },
   google: {
     id: String,

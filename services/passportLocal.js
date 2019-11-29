@@ -17,33 +17,37 @@ passport.deserializeUser((id, done) => {
 passport.use(
   "local",
   new LocalStrategy(
-    // { usernameField: "username", passwordField: "password" },
-    (username, password, done) => {
-      //   console.log(username);
-      User.findOne({ "local.username": username }).then(foundUser => {
-        // console.log("found user" + foundUser);
-        if (foundUser) {
-          done(null, foundUser);
-        } else {
-          const newUser = new User();
-          //   new User({
-          //     local: {
-          //       username,
-          //       password: generateHash(password)
-          //     }
-          //   })
-          newUser.local.username = username;
-          newUser.local.password = newUser.generateHash(password);
-          newUser
-            .save()
-            .then(user => done(null, user))
-            .catch(err => {
-              require.flash("error", err.message);
-              res.redirect("/signup");
-              console.log(err);
-            });
-        }
-      });
+    { passReqToCallback: true }, // how to get different form fields - https://stackoverflow.com/questions/36761291/how-can-i-store-other-form-fields-with-passport-local-js and documentation - https://github.com/jaredhanson/passport-local#parameters
+    (req, username, password, done) => {
+      User.findOne({ "local.username": username })
+        .then(foundUser => {
+          // console.log("found user" + foundUser);
+          if (foundUser) {
+            done(null, foundUser);
+          } else {
+            const newUser = new User();
+            //   new User({
+            //     local: {
+            //       username,
+            //       password: generateHash(password)
+            //     }
+            //   })
+            newUser.local = {
+              username,
+              email: req.body.email,
+              age: req.body.age,
+              occupation: req.body.occupation
+            };
+            newUser.local.password = newUser.generateHash(password);
+
+            newUser.save().then(user => done(null, user));
+          }
+        })
+        .catch(err => {
+          req.flash("error", err.message);
+          res.redirect("/signup");
+          console.log(err);
+        });
     }
   )
 );

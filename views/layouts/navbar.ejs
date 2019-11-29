@@ -1,0 +1,19 @@
+<nav>
+  <div class="ui fixed inverted menu">
+    <div class="right menu">
+      <%if(currentUser){%>
+      <a class="ui item" href="">
+      <p>
+            Logged in as &nbsp
+            <strong> 
+                <%= currentUser.local.username || currentUser.google.name || currentUser.facebook.name %>
+            </strong>
+      </p>  
+      </a>
+      <a class="ui item" href="/logout">
+        Log Out
+      </a>
+      <%}%>
+    </div>
+  </div>
+</nav>
