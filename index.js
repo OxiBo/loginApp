@@ -1,6 +1,9 @@
 // https://scotch.io/tutorials/easy-node-authentication-setup-and-local
 
 // https://dev.to/deammer/loading-environment-variables-in-js-apps-1p7p
+
+// http://www.passportjs.org/docs/facebook/
+
 require("dotenv").config();
 
 const express = require("express"),
@@ -90,10 +93,8 @@ app.get("/secret", (req, res) => {
 
 // logout route
 app.get("/logout", async (req, res) => {
-  // console.log('test')
-  // console.log("test" + req.user);
-
-  //   console.log(req.session.facebook.id)
+  
+  // https://developers.facebook.com/docs/facebook-login/reauthentication/
   if (req.user.facebook.id) {
     try {
       const check = await axios.delete(
