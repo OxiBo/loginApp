@@ -27,13 +27,13 @@
               </a> -->
             <%if(currentUser){%>
             <a class="ui item">
-                Logged in as 
+                <i class="address card icon"></i>   Logged in as 
                 
                   <%= currentUser.local.username || currentUser.google.name ||
                   currentUser.facebook.name %>
             
             </a>
-            <a class="ui item" href="/logout">
+            <a class="ui item" href="/logout"><i class="sign out alternate icon"></i>
               Log Out
             </a>
             <%} else {%>
