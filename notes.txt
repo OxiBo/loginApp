@@ -1,0 +1,19 @@
+https://medium.com/@prashantramnyc/node-js-with-passport-authentication-simplified-76ca65ee91e5
+
+1. app.use (passport.initialize())
+2. app.use (passport.session())
+3. passport.use(new LocalStrategy (authUser))
+   3a. Define the "authUser" function, and authenticate the user.   
+       Pass this {authenticate_user} to the passport.serialize()
+4. passport.serializeUser() 
+//attach the {authenticate_user} to 
+req.session.passport.user.{authenticated_user}
+   passport.deserializeUser()
+//get the {authenticated_user} for the session from "req.session.passport.user.{authenticated_user}, and attach it to req.user.{authenticated_user}
+5. Use passport.authenticate() in the "login" route and define the success and failure redirects i.e.
+app.post ("/login", passport.authenticate('local', {
+   successRedirect: "/dashboard",
+   failureRedirect: "/login",
+}))
+6. Use the “req.isAuthenticated()” function to protect logged in routes
+7. Use “req.logOut()” to clear the sessions object, and log the user out

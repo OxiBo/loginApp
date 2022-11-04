@@ -21,26 +21,30 @@
             <a href="/secret" class="ui item">Secret</a>
           </div>
           <div class="right menu">
-              <!-- <a class="ui item">
+            <!-- <a class="ui item">
                   Logged in as Oks
               
               </a> -->
             <%if(currentUser){%>
             <a class="ui item">
-                <i class="address card icon"></i>   Logged in as 
-                
-                  <%= currentUser.local.username || currentUser.google.name ||
-                  currentUser.facebook.name %>
-            
+              <i class="address card icon"></i> Logged in as <%=
+              currentUser.local.username || currentUser.google.name ||
+              currentUser.facebook.name %>
             </a>
-            <a class="ui item" href="/logout"><i class="sign out alternate icon"></i>
+            <%if(currentUser.google || currentUser.facebook){%>
+            <a class="ui item" href="/registration" method="GET">
+              <i class="address card icon"></i> Finish registration
+            </a>
+            <%}%>
+            <a class="ui item" href="/logout"
+              ><i class="sign out alternate icon"></i>
               Log Out
             </a>
             <%} else {%>
-              <a class="ui item" href="/">
-               Start
-              </a>
-              <%}%>
+            <a class="ui item" href="/">
+              Start
+            </a>
+            <%}%>
           </div>
         </div>
       </nav>
@@ -54,4 +58,6 @@
         <%= success%>
       </div>
       <%}%>
- 
+    </div>
+  </body>
+</html>

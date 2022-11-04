@@ -38,7 +38,9 @@ h2 {
   
   text-align: center;
 }
-
+nav div{
+  background-color: rgb(92, 52, 129)!important;
+}
 nav.p {
   display: inline;
 }
